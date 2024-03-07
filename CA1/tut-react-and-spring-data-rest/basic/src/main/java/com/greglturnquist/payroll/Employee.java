@@ -33,18 +33,29 @@ public class Employee {
 	private String lastName;
 	private String description;
 	private int jobYears;
+<<<<<<< HEAD
+
+	private Employee() {}
+
+	public Employee(String firstName, String lastName, String description, int jobYears) throws InstantiationException {
+		if(firstName == null || lastName == null || description == null || jobYears < 0 || firstName.isEmpty() || lastName.isEmpty() || description.isEmpty())
+=======
 	private String email;
 
 	private Employee() {}
 
 	public Employee(String firstName, String lastName, String description, int jobYears, String email) throws InstantiationException {
 		if(firstName == null || lastName == null || description == null || email == null || jobYears < 0 || firstName.isEmpty() || lastName.isEmpty() || description.isEmpty() || email.isEmpty())
+>>>>>>> email-field
 			throw new InstantiationException("Please enter a valid first name, last name, description and job years.");
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
 		this.jobYears = jobYears;
+<<<<<<< HEAD
+=======
 		this.email = email;
+>>>>>>> email-field
 	}
 
 	@Override
@@ -53,17 +64,28 @@ public class Employee {
 		if (o == null || getClass() != o.getClass()) return false;
 		Employee employee = (Employee) o;
 		return Objects.equals(id, employee.id) &&
+<<<<<<< HEAD
+				Objects.equals(firstName, employee.firstName) &&
+				Objects.equals(lastName, employee.lastName) &&
+				Objects.equals(description, employee.description) &&
+				Objects.equals(jobYears, employee.jobYears);
+=======
 			Objects.equals(firstName, employee.firstName) &&
 			Objects.equals(lastName, employee.lastName) &&
 			Objects.equals(description, employee.description) &&
 			Objects.equals(jobYears, employee.jobYears) &&
 			Objects.equals(email, employee.email);
+>>>>>>> email-field
 	}
 
 	@Override
 	public int hashCode() {
 
+<<<<<<< HEAD
+		return Objects.hash(id, firstName, lastName, description);
+=======
 		return Objects.hash(id, firstName, lastName, description, jobYears, email);
+>>>>>>> email-field
 	}
 
 	public Long getId() {
@@ -102,10 +124,13 @@ public class Employee {
 
 	public void setJobYears(int jobYears) { this.jobYears = jobYears; }
 
+<<<<<<< HEAD
+=======
 	public void setEmail(String email) { this.email = email; }
 
 	public String getEmail() { return email; }
 
+>>>>>>> email-field
 	@Override
 	public String toString() {
 		return "Employee{" +
@@ -114,7 +139,10 @@ public class Employee {
 			", lastName='" + lastName + '\'' +
 			", description='" + description + '\'' +
 			", jobYears='" + jobYears + '\'' +
+<<<<<<< HEAD
+=======
 			", email='" + email + '\'' +
+>>>>>>> email-field
 			'}';
 	}
 }
