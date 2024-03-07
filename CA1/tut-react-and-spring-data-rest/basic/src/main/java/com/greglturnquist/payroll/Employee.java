@@ -37,9 +37,8 @@ public class Employee {
 
 	private Employee() {}
 
-
 	public Employee(String firstName, String lastName, String description, int jobYears, String email) throws InstantiationException {
-		if(firstName == null || lastName == null || description == null || email == null || jobYears < 0 || firstName.isEmpty() || lastName.isEmpty() || description.isEmpty() || email.isEmpty())
+		if(firstName == null || lastName == null || description == null || email == null || jobYears < 0 || firstName.isEmpty() || lastName.isEmpty() || description.isEmpty() || !email.contains("@"))
 			throw new InstantiationException("Please enter a valid first name, last name, description and job years.");
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -105,6 +104,7 @@ public class Employee {
 	public void setEmail(String email) { this.email = email; }
 
 	public String getEmail() { return email; }
+
 
 	@Override
 	public String toString() {

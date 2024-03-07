@@ -70,6 +70,7 @@ class EmployeeTest {
         String description = "ring bearer";
         int jobYears = 0;
         assertThrows(InstantiationException.class, () -> new Employee(firstName, lastName, description, jobYears,"frodo.baggins@shire.com"));
+
     }
 
     @Test
@@ -111,6 +112,16 @@ class EmployeeTest {
         String description = "ring bearer";
         int jobYears = 0;
         String email = null;
+        assertThrows(InstantiationException.class, () -> new Employee(firstName, lastName, description, jobYears,email));
+    }
+
+    @Test
+    void createEmployee_InvalidEmail(){
+        String firstName = "Frodo";
+        String lastName = "Baggins";
+        String description = "ring bearer";
+        int jobYears = 0;
+        String email = "frodo.bagginsshire.com";
         assertThrows(InstantiationException.class, () -> new Employee(firstName, lastName, description, jobYears,email));
     }
 }
