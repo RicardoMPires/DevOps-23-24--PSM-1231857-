@@ -282,7 +282,7 @@ class Employee extends React.Component{
 ./mvnw spring-boot:run
 ```
 12. Open a browser and navigate to [http://localhost:8080/employees](http://localhost:8080/employees) to see the changes. It should look like this:
-![img.png](img.png)
+![img.png](Images/img.png)
 13. Commit the changes to the main branch:
 ```bash
 git commit -m "Added the job years field to the application"
@@ -554,7 +554,7 @@ class Employee extends React.Component{
 ./mvnw spring-boot:run
 ```
 15. Open a browser and navigate to [http://localhost:8080/employees](http://localhost:8080/employees) to see the changes. It should look like this:
-![img_1.png](img_1.png)
+![img_1.png](Images/img_1.png)
 16. Commit the changes to the email-field branch:
 ```bash
 git commit -m "Added the email field to the application"
@@ -622,15 +622,15 @@ git push --tags ca1-part2
 During the development of the assignment, if any problems arose, is it possible to use the GitHub issues feature. Issues can be opened in the Github repository website. To open a new issue, follow these steps:
 
 1. Go to the repository's main page:
-![img_2.png](img_2.png)
+![img_2.png](Images/img_2.png)
 2. Click on the "Issues" tab:
-![img_3.png](img_3.png)
+![img_3.png](Images/img_3.png)
 3. Click on the "New issue" button:
-![img_4.png](img_4.png)
+![img_4.png](Images/img_4.png)
 4. Fill in the issue title and description and click on the "Submit new issue" button:
-![img_5.png](img_5.png)
+![img_5.png](Images/img_5.png)
 5. The issue will be created and assigned a number and can be seen by anyone who has access to the repository:
-![img_6.png](img_6.png)
+![img_6.png](Images/img_6.png)
 6. The issue can be assigned to someone, labeled, and commented on. It can also be closed when the problem is solved by associating it with a commit:
 ```java
 git commit -m "Fixes #1"
