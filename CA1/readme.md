@@ -281,7 +281,7 @@ class Employee extends React.Component{
 ```bash
 ./mvnw spring-boot:run
 ```
-12. Open a browser and navigate to [http://localhost:8080/employees](http://localhost:8080/employees) to see the changes. It should look like this:
+12. Open a browser and navigate to [http://localhost:8080](http://localhost:8080/employees) to see the changes. It should look like this:
 ![img.png](Images/img.png)
 13. Commit the changes to the main branch:
 ```bash
@@ -553,7 +553,7 @@ class Employee extends React.Component{
 ```bash
 ./mvnw spring-boot:run
 ```
-15. Open a browser and navigate to [http://localhost:8080/employees](http://localhost:8080/employees) to see the changes. It should look like this:
+15. Open a browser and navigate to [http://localhost:8080](http://localhost:8080/employees) to see the changes. It should look like this:
 ![img_1.png](Images/img_1.png)
 16. Commit the changes to the email-field branch:
 ```bash
