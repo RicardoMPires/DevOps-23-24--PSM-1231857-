@@ -557,7 +557,7 @@ class Employee extends React.Component{
 ![img_1.png](Images/img_1.png)
 16. Commit the changes to the email-field branch:
 ```bash
-git commit -a-m "Added the email field to the application"
+git commit -a -m "Added the email field to the application"
 ```
 17. Switch to the main branch:
 ```bash
@@ -593,7 +593,7 @@ public Employee(String firstName, String lastName, String description, int jobYe
 ```
 16. Commit the changes to the email-field branch:
 ```bash
-git commit -a-m "Added further email validations to the application"
+git commit -a -m "Added further email validations to the application"
 ```
 17. Switch to the main branch:
 ```bash
@@ -633,7 +633,7 @@ During the development of the assignment, if any problems arose, is it possible 
 ![img_6.png](Images/img_6.png)
 6. The issue can be assigned to someone, labeled, and commented on. It can also be closed when the problem is solved by associating it with a commit:
 ```java
-git commit -a-m "Fixes #1"
+git commit -a -m "Fixes #1"
 ```
 
 ### Alternative to Git: Mercurial
