@@ -64,8 +64,8 @@ The rest of the assignment can be done by opening a bash terminal and running th
 
 7. Add a tag to the commit:
    ```bash
-   git tag -a v1.1.0
-   git push --tags v1.1.0
+   git tag v1.1.0
+   git push --tags
    ```
     - the first step creates a new tag, with the name "v1.0" and the message "First version of the application"
     - the second step uploads the tag to the remote repository
@@ -293,13 +293,13 @@ git push
 ```
 15. Add a tag to the commit:
 ```bash
-git tag -a v1.2.0
-git push --tags v1.2.0
+git tag v1.2.0
+git push --tags
 ```
 16. Add a tag to mark the finish of this first part of the assignment:
 ```bash
-git tag -a ca1-part1
-git push --tags ca1-part1
+git tag ca1-part1
+git push --tags
 ```
 
 #### Part 2: Adding the email field
@@ -573,8 +573,8 @@ git push origin main
 ```
 20. Add a new tag to the commit:
 ```bash
-git tag -a v1.3.0
-git push --tags v1.3.0
+git tag v1.3.0
+git push --tag v1.3.0
 ```
 #### Part 3: Adding the fix for invalid email addresses
 A separate branch should be created for this part, using step 1 to 3 from the previous section. The name of the new branch should be _fix-invalid-email_.
@@ -609,13 +609,13 @@ git push origin main
 ```
 20. Add a new tag to the commit:
 ```bash
-git tag -a v1.3.1
-git push --tags v1.3.1
+git tag v1.3.1
+git push --tags
 ```
 21. Add a tag to mark the finish of this first part of the assignment:
 ```bash
-git tag -a ca1-part2
-git push --tags ca1-part2
+git tag ca1-part2
+git push --tags
 ```
 
 ### Issues
