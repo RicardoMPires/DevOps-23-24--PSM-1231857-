@@ -283,7 +283,7 @@ class Employee extends React.Component{
 ```
 12. Open a browser and navigate to [http://localhost:8080](http://localhost:8080/employees) to see the changes. It should look like this:
 ![img.png](Images/img.png)
-13. Commit the changes to the main branch:
+13. Add and commit the changes to the main branch(the -a command adds the files to the staging area):
 ```bash
 git commit -a-m "Added the job years field to the application"
 ```
@@ -555,7 +555,7 @@ class Employee extends React.Component{
 ```
 15. Open a browser and navigate to [http://localhost:8080](http://localhost:8080/employees) to see the changes. It should look like this:
 ![img_1.png](Images/img_1.png)
-16. Commit the changes to the email-field branch:
+16. Add and commit the changes to the email-field branch(the -a command adds the files to the staging area):
 ```bash
 git commit -a -m "Added the email field to the application"
 ```
@@ -591,7 +591,7 @@ public Employee(String firstName, String lastName, String description, int jobYe
 		this.email = email;
 	}
 ```
-16. Commit the changes to the email-field branch:
+16. Add and commit the changes to the email-field branch(the -a command adds the files to the staging area):
 ```bash
 git commit -a -m "Added further email validations to the application"
 ```
