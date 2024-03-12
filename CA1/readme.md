@@ -40,7 +40,7 @@ The rest of the assignment can be done by opening a bash terminal and running th
    ```bash
    git init
    ```
-    - adds a ".git" directory to the current directory (the added directory contains alal the information required for the repository work process)
+    - adds a ".git" directory to the current directory (the added directory contains all the information required for the repository work process)
 
 4. Add all files to the staging area:
    ```bash
