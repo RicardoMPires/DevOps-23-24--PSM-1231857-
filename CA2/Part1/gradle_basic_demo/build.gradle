@@ -25,6 +25,7 @@ dependencies {
     // Use Apache Log4J for logging
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.2'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
+    testImplementation 'junit:junit:4.12'
 }
  
 
@@ -67,4 +68,12 @@ task runServer(type:JavaExec, dependsOn: classes){
     mainClass = 'basic_demo.ChatServerApp'
 
     args '59001'
+}
+
+task copySources (type: Copy){
+    group = "DevOps"
+    description = "Copy source files to the target directory"
+
+    from 'src/'
+    into 'backup/'
 }
