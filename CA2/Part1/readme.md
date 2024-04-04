@@ -11,7 +11,8 @@ The final result of the assignment can be found [here](https://github.com/Ricard
 2. [Implementing Changes](#Implementing-Changes)
     - [Part 1: Adding the runServer task](#Part-1-Adding-the-runServer-task)
     - [Part 2: Adding the test class and unit test](#Part-2-Adding-the-test-class-and-unit-test)
-    - [Part 3: Adding the Copy task](#Part-3-Addding-the-Copy-task)
+   - [Part 3: Adding the Copy task](#Part-3-Adding-the-Copy-task)
+   - [Part 4: Adding the Zip task](#Part-4-Adding-the-Zip-task)
 3. [Issues](#Issues)
 
 
@@ -168,7 +169,7 @@ git commit -a -m "Add copy task"
 git push
 ```
 
-#### Part 3: Adding the Zip task
+#### Part 4: Adding the Zip task
 The goal is to create a new task that will create a .zip backup of the source of the application and copy it into a 'backup' folder in the application root. The steps to do so are:
 
 1. Open the build.gradle file and add the new task:
