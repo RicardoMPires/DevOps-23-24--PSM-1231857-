@@ -34,25 +34,22 @@ The rest of the assignment can be done by opening a bash terminal and running th
    ```
     - command cp copies the directories and files stated ('.', the current directory), the '-r' notation says it will be copied recursively (all its contents) and '../CA1' is the destination folder
 
-3. Initialize the Git repository (if not already a Git repository, in that case this step can be ignored):
-   ```bash
-   git init
-   ```
-    - adds a ".git" directory to the current directory (the added directory contains all the information required for the repository work process)
 
-4. Add all files to the staging area:
+3. Add all files to the staging area:
    ```bash
    git add .
    ```
     - before being ready to be commited and then pushed to the remote repository, changes must be added to a staging area, covered by this command. The "." notation indicates that ALL the unstaged files in the repository directory should be staged.
 
-5. Commit the added files:
+
+4. Commit the added files:
    ```bash
    git commit -m "Initial commit with the basic gradle application"
    ```
     - creates a new commit, containing the current contents of the index (the staged changes to the files in the repository) and the given log message (after "-m") describing the changes.
 
-6. Push the commit to the remote repository:
+
+5. Push the commit to the remote repository:
    ```bash
    git push
    ```
