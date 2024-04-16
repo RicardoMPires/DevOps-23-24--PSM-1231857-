@@ -2,207 +2,201 @@
 
 ## Introduction
 
-The goal of this class assignment was to use or personal repositories and use a basic gradle application to introduce new features. Although the features are simple, the goal is to understand how a gradle wrapper works and operates and to edit the build.gradle file.
+The goal of this class assignment was to use or personal repositories and adapt a basic maven application to use gradle
+and introduce new features. Although the features are simple, the goal is to understand how a gradle wrapper works and
+operates and to edit the build.gradle file.
 The final result of the assignment can be found [here](https://github.com/RicardoMPires/DevOps-23-24--PSM-1231857-).
 
 ## Table of Contents
 
 1. [Getting Started](#Getting-started)
 2. [Implementing Changes](#Implementing-Changes)
-    - [Part 1: Adding the runServer task](#Part-1-Adding-the-runServer-task)
-    - [Part 2: Adding the test class and unit test](#Part-2-Adding-the-test-class-and-unit-test)
-   - [Part 3: Adding the Copy task](#Part-3-Adding-the-Copy-task)
-   - [Part 4: Adding the Zip task](#Part-4-Adding-the-Zip-task)
+   - [Part 1: Adding the frontend plugin](#Part-1-Adding-the-frontend-plugin)
+   - [Part 2: Adding the copyJar task](#Part-2-Adding-the-copyJar-task)
+   - [Part 3: Adding the deleteWebpackFiles task](#Part-3-Adding-the-deleteWebpackFiles-task)
+   - [Part 4: Merging the branches](#Part-4-Merging-the-branches)
 3. [Issues](#Issues)
+4. [Alternative implementation solution](#Alternative-implementation-solution)
+5. [Final Remarks](#Final-Remarks)
 
 
 ## Getting Started
 
-The first step is to clone [this repository](https://bitbucket.org/pssmatos/gradle_basic_demo/) to your local machine as it will serve as the basis for the task.
-The rest of the assignment can be done by opening a bash terminal and running the following commands:
+The first step is to create a new branch called "tut-basic-gradle" in the repository to work on the assignment. To do
+so, open a git bash and type in the command:
 
-1. Navigate to the project directory (assuming the gradle application is already locally available):
-   ```bash
-   cd path/to/gradle_basic_demo
-   ```
-- command cd changes the current directory
-
-2. Copy the application into a new CA2/Part1 folder:
-   ```bash
-   cp -r . ../CA2/Part1
-   cd ../CA2/Part1
-   ```
-    - command cp copies the directories and files stated ('.', the current directory), the '-r' notation says it will be copied recursively (all its contents) and '../CA1' is the destination folder
-
-
-3. Add all files to the staging area:
-   ```bash
-   git add .
-   ```
-    - before being ready to be commited and then pushed to the remote repository, changes must be added to a staging area, covered by this command. The "." notation indicates that ALL the unstaged files in the repository directory should be staged.
-
-
-4. Commit the added files:
-   ```bash
-   git commit -m "Initial commit with the basic gradle application"
-   ```
-    - creates a new commit, containing the current contents of the index (the staged changes to the files in the repository) and the given log message (after "-m") describing the changes.
-
-
-5. Push the commit to the remote repository:
-   ```bash
-   git push
-   ```
-    - This step  uploads local repository content to the remote repository location.
-
-
-### Implementing Changes
-#### Part 1: Adding the runServer task
-
-For this first section, goal is to add a new task in the build.gradle file to start the server. The steps to do so are:
-
-1. Open the build.gradle file (located in the root of the project) and navigate to the end of the file and add the new task:
-   ```gradle
-   task runServer(type:JavaExec, dependsOn: classes){
-    group = "DevOps"
-    description = "Launches a chat server that listens on localhost:59001"
-
-    classpath = sourceSets.main.runtimeClasspath
-
-    mainClass = 'basic_demo.ChatServerApp'
-
-    args '59001'}
-
-    ```
-
-     - The task is of type JavaExec, which means it will execute a Java class. It depends on the classes task, which means it will only run after the classes task is completed. The group and description are used to describe the task. The classpath is set to the runtime classpath of the main source set. The mainClass is set to the ChatServerApp class, and the args are set to 59001, which is the port the server will listen to.
-
-
-#### Part 2: Adding the test class and unit test
-
-For this part of the assignment, a new test class will be created and a unit test will be added. The steps to do so are:
-
-1. Create a new test folder and a new test class:
-   ```bash
-   mkdir -p src/test/java/basic_demo
-   touch src/test/java/basic_demo/ChatServerAppTest.java
-   ```
-    - command mkdir creates a new directory, the '-p' notation allows for the creation of multiple directories at once, and the touch command creates a new file.
-
-
-2. Setup the test class:
-```java
-package basic_demo;
-
-
-import org.junit.Test;
-import static org.junit.Assert.*;
-
-public class AppTest {
-}
+```bash
+git branch tut-basic-gradle
 ```
-3. Add the unit test:
-```java
-   @Test public void testAppHasAGreeting() {
-      App classUnderTest = new App();
-      assertNotNull("app should have a greeting", classUnderTest.getGreeting());
-   }
+
+After creating the branch, switch to it by typing:
+
+```bash
+git checkout tut-basic-gradle
 ```
-4. Add the dependencies in the build.gradle file:
+
+1. Go to [this website](https://start.spring.io) to generate a new gradle spring boot project. Fill in the necessary
+   information and add the needed dependencies according to the image below:
+   ![img_1.png](Images/img.png)
+
+2. Click on the "Generate" button and download the project. Extract the files to the CA2 Part2 folder.
+
+3. Open the project in IntelliJ and delete de **src** folder.
+
+4. Copy the **src** folder from Class Assignment 1 Part 1 to the project folder.
+5. Copy the **webpack.config.js** and the **package.json** files from Class Assignment 1 Part 1 to the project folder.
+6. Delete the **src/main/resources/static/built/** folder.
+7. In the **Employee.java** class, change all *javax.persistence* imports to *jakarta.persistence*.
+
+## Implementing Changes
+
+### Part 1: Adding the frontend plugin
+
+For this first section, the goal is to add a frontend plugin to our gradle project. The steps to do so are:
+
+1. Open the build.gradle file and add the plugin:
+
 ```gradle
-dependencies {
-    // Use Apache Log4J for logging
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.2'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
-    testImplementation 'junit:junit:4.12'
+ id "org.siouan.frontend-jdk17" version "8.0.0"
+```
+
+2. Configure the plugin in the same package.json file:
+
+```gradle
+ frontend {
+nodeVersion = "16.20.2"
+assembleScript = "run build"
+cleanScript = "run clean"
+checkScript = "run check"
 }
+```
+
+3. Add the dependencies in the package.json file:
+
+```gradle
+"scripts": {
+"webpack": "webpack",
+"build": "npm run webpack",
+"check": "echo Checking frontend",
+"clean": "echo Cleaning frontend",
+"lint": "echo Linting frontend",
+"test": "echo Testing frontend"
+},
+```
+
+4. Add the package manager to the package.json file, before the scripts section:
+
+```gradle
+"packageManager": "npm@9.6.7",
 ```
 
 5. Compile the project in the terminal(first navigate to the project folder):
+
 ```bash
 ./gradlew build
 ```
-*Note*: It is also possible to run the task independently by using the command:
+
+6. Start the project with the following command:
+
 ```bash
-./gradlew runServer
+./gradlew bootRun
 ```
-6. Add and commit the changes(the -a command adds the files to the staging area):
+
+7. Access the following [url](localhost:8080) in your browser to check the result. It should look something like this:
+   ![img_7.png](Images/img_7.png)
+
+### Part 2: Adding the copyJar task
+
+For this part of the assignment, a new task will be added to copy the generated Jar file to a **dist** folder in the
+project root. The steps to do so are:
+
+1. Open the build.gradle file and add the task:
+```gradle
+task copyJar(type: Copy, dependsOn: build) {
+	from 'build/libs/'
+	into 'dist'
+	include '*.jar'
+}
+```
+
+2. Compile the project in the terminal(first navigate to the project folder):
 ```bash
-git commit -a -m "Add test class and unit test"
+./gradlew build
 ```
-7. Push the changes to the remote repository:
+
+3. Add all te files to the staging area:
+```bash
+git add .
+```
+
+4. Commit the changes:
+```bash
+git commit -m "Added the copyJar task"
+```
+
+5. Push the changes to the repository:
 ```bash
 git push
 ```
 
-#### Part 3: Adding the Copy task
-The goal is to create a new task that will create a backup of the source of the application and copy it into a 'backup' folder in the application root. The steps to do so are:
+### Part 3: Adding the deleteWebpackFiles task
 
-1. Open the build.gradle file and add the new task:
+For this part of the assignment, a new task will be added to delete the files generated by the webpack. The steps to do
+so are:
+
+1. Open the build.gradle file and add the task:
 ```gradle
-task copySources (type: Copy){
-    group = "DevOps"
-    description = "Copy source files to the target directory"
-
-    from 'src/'
-    into 'backup/'
+task deleteWebpackFiles(type: Delete) {
+	delete 'src/main/resources/static/built'
 }
 ```
-5. Compile the project in the terminal(first navigate to the project folder):
+
+2. Add the following command to make sure this task is executed automatically by the task *clean*:
+
+```gradle
+clean.dependsOn(deleteWebpackFiles)
+```
+
+3. Compile the project in the terminal(first navigate to the project folder):
 ```bash
 ./gradlew build
 ```
-*Note*: It is also possible to run the task independently by using the command:
+
+4. Add all te files to the staging area:
 ```bash
-./gradlew copySources
+git add .
 ```
 
-6. Add and commit the changes(the -a command adds the files to the staging area):
+5. Commit the changes:
 ```bash
-git commit -a -m "Add copy task"
+git commit -m "Added the deleteWebpackFiles task"
 ```
-7. Push the changes to the remote repository:
+
+6. Push the changes to the repository:
 ```bash
 git push
 ```
 
-#### Part 4: Adding the Zip task
-The goal is to create a new task that will create a .zip backup of the source of the application and copy it into a 'backup' folder in the application root. The steps to do so are:
+### Part 4: Merging the branches
 
-1. Open the build.gradle file and add the new task:
-```gradle
-task zipSources (type: Zip){
-    group = "DevOps"
-    description = "Zip source files to the target directory"
+Now we need to merge to the master branch. To do so, follow these steps:
 
-    from 'src/'
-    archiveFileName = 'src.zip'
-    destinationDir = file('backup/')
-}
-```
-5. Compile the project in the terminal(first navigate to the project folder):
+1. Switch to the master branch:
 ```bash
-./gradlew build
+git checkout master
 ```
-*Note*: It is also possible to run the task independently by using the command:
+
+2. Merge the tut-basic-gradle branch:
 ```bash
-./gradlew zipSources
+git merge --no-ff tut-basic-gradle
 ```
-6. Add and commit the changes(the -a command adds the files to the staging area):
-```bash
-git commit -a -m "Add zip task"
-```
-7. Push the changes to the remote repository:
+
+3. Push the changes to the repository:
 ```bash
 git push
 ```
-8. Add a tag to mark the end of the first part of this assignment:
-```bash
-git tag ca2-part1
-git push --tags
-```
 
-### Issues
+## Issues
 During the development of the assignment, if any problems arose, is it possible to use the GitHub issues feature. Issues can be opened in the Github repository website. To open a new issue, follow these steps:
 
 1. Go to the repository's main page:
@@ -219,3 +213,207 @@ During the development of the assignment, if any problems arose, is it possible 
 ```java
 git commit -a -m "Fixes #1"
 ```
+
+## Alternative implementation solution
+
+An alternative solution to the assignment would be to use a different solution for the build automation tool. Instead of
+using Gradle, we could use Maven. Maven is a build automation tool used primarily for Java projects. It is similar to
+Gradle but uses an XML file to define the project's structure and dependencies. The steps to implement the changes using
+Maven would be:
+
+1. Create a new module in your project and copy the **src** folder from Class Assignment 2 Part 2 to the project folder.
+2. Copy the **webpack.config.js** and the **package.json** files from Class Assignment 2 Part 2 to the project folder.
+3. Add the pom.xml file to the project (containing the frontend plugin and both the tasks):
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.2.4.RELEASE</version>
+      <relativePath/>
+   </parent>
+
+   <groupId>com.greglturnquist</groupId>
+   <artifactId>react-and-spring-data-rest-basic</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+
+   <name>React.js and Spring Data REST</name>
+   <description>An SPA with ReactJS in the frontend and Spring Data REST in the backend</description>
+
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <java.version>1.8</java.version>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-thymeleaf</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-data-jpa</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-data-rest</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-devtools</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+         <scope>runtime</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>1.9.1</version>
+            <configuration>
+               <installDirectory>target</installDirectory>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>install node and npm</id>
+                  <goals>
+                     <goal>install-node-and-npm</goal>
+                  </goals>
+                  <configuration>
+                     <nodeVersion>v12.14.0</nodeVersion>
+                     <npmVersion>6.13.4</npmVersion>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>npm install</id>
+                  <goals>
+                     <goal>npm</goal>
+                  </goals>
+                  <configuration>
+                     <arguments>install</arguments>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>webpack build</id>
+                  <goals>
+                     <goal>webpack</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+
+         <plugin>
+            <artifactId>maven-clean-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+               <filesets>
+                  <fileset>
+                     <directory>${project.basedir}/src/main/resources/static/built</directory>
+                     <includes>
+                        <include>**/*</include>
+                     </includes>
+                  </fileset>
+               </filesets>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.2.0</version>
+            <executions>
+               <execution>
+                  <id>copy-jar</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                     <outputDirectory>${project.basedir}/dist</outputDirectory>
+                     <resources>
+                        <resource>
+                           <directory>${project.build.directory}</directory>
+                           <includes>
+                              <include>*.jar</include>
+                           </includes>
+                        </resource>
+                     </resources>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+</project>
+```
+
+5. Compile the project by using the following command:
+
+```bash
+mvn build
+```
+
+6. Navigate to the created folder and start the project with the following command:
+
+```bash
+mvn spring-boot:run
+```
+
+7. Access the following [url](localhost:8080) in your browser to check the result. It should look similar to the Gradle
+   version.
+
+8. Add all the files to the staging area by using the following command:
+
+```bash
+git add .
+```
+
+9. Commit the changes by using the following command:
+
+```bash
+git commit -m "Added the Maven build automation tool"
+```
+
+10. Push the changes to the repository by using the following command:
+
+```bash
+git push
+```
+
+By following these steps, the assignment can be completed using Maven as the build automation tool instead of Gradle.
+This alternative solution provides a different approach to implementing the changes required for the assignment and
+demonstrates the flexibility of using different build automation tools for Java projects.
+
+## Final Remarks
+
+During the development of this assignment some issues arose with the implementation of the frontend plugin. The plugin
+was not working as expected and the project was not compiling correctly. After some troubleshooting, the issue was
+resolved by adding the package manager section to the build.gradle file. Unfortunately, due to attempting to build the
+project before adding the package manager, some files were generated and added that were preventing the project from
+compiling. This meant that the assignment had to be restarted, hence the extra commits to the project.
+After redoing the steps and adding the package manager section, the project compiled correctly and the frontend plugin
+was working as expected. The copyJar and deleteWebpackFiles tasks were added successfully and the project was merged to
+the master branch. The assignment was completed successfully and the changes were pushed to the repository.
+
+
