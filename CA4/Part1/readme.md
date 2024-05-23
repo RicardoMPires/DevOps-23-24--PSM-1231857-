@@ -10,10 +10,6 @@ The final result of the assignment can be found [here](https://github.com/Ricard
 
 1. [Version 1](#Version-1)
 2. [Version 2](#Version-2)
-    - [Part 1: Cloning the repository to the VM](#Part-1-Cloning-the-repository-to-the-VM)
-    - [Part 2: Running the CA1 project](#Part-2-Running-the-CA1-project)
-    - [Part 3: Running the CA1 Part1 project](#Part-3-Running-the-CA2-Part1-project)
-    - [Part 4: Running the CA2 Part2 project](#Part-4-Running-the-CA2-Part2-project)
 3. [Final Remarks](#Final-Remarks)
 
 ## Version 1
