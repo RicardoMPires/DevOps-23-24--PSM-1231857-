@@ -1,0 +1,9 @@
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY ./react-and-spring-data-rest-basic .
+WORKDIR /app
+RUN chmod +x gradlew
+CMD ["./gradlew", "build"]
+EXPOSE 8080
+RUN ls -la
+CMD ["java", "-jar", "dist/react-and-spring-data-rest-basic-0.0.1-SNAPSHOT.jar"]
