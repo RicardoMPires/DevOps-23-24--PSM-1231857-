@@ -109,6 +109,18 @@ After the docker-compose file is created we can build the images by running the 
 docker-compose build
 ```
 
+To run the containers we can execute the following command:
+
+```bash
+docker-compose up
+```
+
+With the containers running, we can copy the database file by running the following command:
+
+```bash
+docker exec -it CA4_Part2_db /bin/bash -c "cp -r /opt/h2-data /opt/h2-data"
+```
+
 Push the Web docker image to Docker Hub by running the following command:
 
 ```bash
