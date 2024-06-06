@@ -11,7 +11,10 @@ pipeline {
 
         stage('Assemble') {
             steps {
-                // This will run the 'assemble' task of Gradle
+                // Print the current directory
+                sh 'pwd'
+                // List the contents of the current directory
+                sh 'ls -la'
                 sh './gradlew assemble'
             }
         }
