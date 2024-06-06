@@ -8,6 +8,15 @@ pipeline {
             }
         }
 
+        stage('Install Webpack') {
+            steps {
+                dir ('CA2/Part2/react-and-spring-data-rest-basic'){
+                    sh 'npm install'
+                    sh 'npx webpack --config webpack.config.js'
+                }
+            }
+        }
+
         stage('Assemble') {
             steps {
                dir ('CA2/Part2/react-and-spring-data-rest-basic'){
