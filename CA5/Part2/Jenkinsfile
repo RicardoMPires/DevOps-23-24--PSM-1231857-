@@ -11,9 +11,9 @@ pipeline {
         stage('Assemble') {
             steps {
                dir ('CA2/Part2/react-and-spring-data-rest-basic'){
-                               sh './gradlew assemble'
-                           }
-        }
+                   sh './gradlew assemble'
+               }
+            }
         }
 
         stage('Test') {
@@ -55,15 +55,17 @@ pipeline {
             }
         }
 
-      stage('Publish Image') {
-          steps {
-              script {
-                  dir('CA5/Part2') {
-                      def app = docker.build("ricardompires/devops_23_24:${env.BUILD_NUMBER}")
-                      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
-                          app.push()
-                      }
-                  }
-              }
-          }
-      }
+        stage('Publish Image') {
+            steps {
+                script {
+                    dir('CA5/Part2') {
+                        def app = docker.build("ricardompires/devops_23_24:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
+                            app.push()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
