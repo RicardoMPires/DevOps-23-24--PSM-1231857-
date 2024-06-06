@@ -4,29 +4,32 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Assuming you're using Git
                 git 'https://github.com/RicardoMPires/DevOps-23-24--PSM-1231857-.git'
+            }
+        }
+
+        stage('Setup Gradle Wrapper') {
+            steps {
+                script {
+                    if (!fileExists('./CA2/Part1/gradle_basic_demo/gradle/wrapper/gradle-wrapper.jar')) {
+                        sh './CA2/Part1/gradle_basic_demo/gradlew wrapper'
+                    }
+                }
             }
         }
 
         stage('Assemble') {
             steps {
-                // Print the current directory
-                sh 'pwd'
-                // List the contents of the current directory
-                sh 'ls -la'
                 sh './CA2/Part1/gradle_basic_demo/gradlew assemble'
             }
         }
 
         stage('Test') {
             steps {
-                // This will run the 'test' task of Gradle
                 sh './gradlew test'
             }
             post {
                 always {
-                    // This will archive the test results in Jenkins
                     junit '**/build/test-results/**/*.xml'
                 }
             }
