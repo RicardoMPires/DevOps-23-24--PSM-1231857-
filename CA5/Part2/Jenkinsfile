@@ -1,0 +1,63 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/RicardoMPires/DevOps-23-24--PSM-1231857-.git'
+            }
+        }
+
+        stage('Assemble') {
+            steps {
+                sh './CA2/Part2/gradle_basic_demo/gradlew assemble'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh './CA2/Part2/gradle_basic_demo/gradlew test'
+            }
+            post {
+                always {
+                    junit '**/build/test-results/**/*.xml'
+                }
+            }
+        }
+
+        stage('Javadoc') {
+            steps {
+                sh './CA2/Part2/gradle_basic_demo/gradlew javadoc'
+            }
+            post {
+                always {
+                    publishHTML(target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'CA2/Part2/gradle_basic_demo/build/docs/javadoc',
+                        reportFiles: 'index.html',
+                        reportName: 'Javadoc'
+                    ])
+                }
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
+            }
+        }
+
+        stage('Publish Image') {
+            steps {
+                script {
+                    def app = docker.build("ricardompires/devops_23_24:${env.BUILD_NUMBER}")
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
+                        app.push()
+                    }
+                }
+            }
+        }
+    }
+}
