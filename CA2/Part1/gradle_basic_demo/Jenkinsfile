@@ -10,13 +10,13 @@ pipeline {
 
         stage('Assemble') {
             steps {
-                sh './CA2/Part1/gradle_basic_demo/gradle assemble'
+                sh './CA2/Part1/gradle_basic_demo/gradlew assemble'
             }
         }
 
         stage('Test') {
             steps {
-                sh './CA2/Part1/gradle_basic_demo/gradle test'
+                sh './CA2/Part1/gradle_basic_demo/gradlew test'
             }
             post {
                 always {
