@@ -10,13 +10,17 @@ pipeline {
 
         stage('Assemble') {
             steps {
-                sh './CA2/Part2/gradle_basic_demo/gradlew assemble'
-            }
+               dir ('CA2/Part2/react-and-spring-data-rest-basic'){
+                               sh './gradlew assemble'
+                           }
+        }
         }
 
         stage('Test') {
             steps {
-                sh './CA2/Part2/gradle_basic_demo/gradlew test'
+             dir ('CA2/Part2/react-and-spring-data-rest-basic'){
+                sh './gradlew test'
+            }
             }
             post {
                 always {
@@ -27,7 +31,9 @@ pipeline {
 
         stage('Javadoc') {
             steps {
-                sh './CA2/Part2/gradle_basic_demo/gradlew javadoc'
+             dir ('CA2/Part2/react-and-spring-data-rest-basic'){
+                sh './gradlew javadoc'
+            }
             }
             post {
                 always {
@@ -35,7 +41,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: 'CA2/Part2/gradle_basic_demo/build/docs/javadoc',
+                        reportDir: 'CA2/Part2/react-and-spring-data-rest-basic/build/docs/javadoc',
                         reportFiles: 'index.html',
                         reportName: 'Javadoc'
                     ])
