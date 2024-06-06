@@ -18,7 +18,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh './CA2/Part1/gradle_basic_demo/gradlew test'
+            dir ('CA2/Part1/gradle_basic_demo'){
+                sh './gradlew test'
+            }
             }
             post {
                 always {
