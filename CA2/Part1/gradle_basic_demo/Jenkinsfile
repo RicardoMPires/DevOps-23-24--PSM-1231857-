@@ -10,8 +10,10 @@ pipeline {
 
         stage('Assemble') {
             steps {
-                sh './CA2/Part1/gradle_basic_demo/gradlew assemble'
+            dir ('CA2/Part1/gradle_basic_demo'){
+                sh './gradlew assemble'
             }
+        }
         }
 
         stage('Test') {
