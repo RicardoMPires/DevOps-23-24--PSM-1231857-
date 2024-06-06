@@ -36,8 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 
-
-node_modules/
 .frontend-gradle-plugin/
 node/
 src/main/resources/static/built/
