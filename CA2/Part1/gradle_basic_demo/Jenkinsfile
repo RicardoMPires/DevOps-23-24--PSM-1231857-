@@ -15,7 +15,7 @@ pipeline {
                 sh 'pwd'
                 // List the contents of the current directory
                 sh 'ls -la'
-                sh './gradlew assemble'
+                sh './CA2/Part1/gradle_basic_demo/gradlew assemble'
             }
         }
 
