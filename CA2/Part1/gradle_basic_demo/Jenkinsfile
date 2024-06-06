@@ -3,30 +3,19 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
                 git 'https://github.com/RicardoMPires/DevOps-23-24--PSM-1231857-.git'
-            }
-        }
-
-        stage('Setup Gradle Wrapper') {
-            steps {
-                script {
-                    if (!fileExists('./CA2/Part1/gradle_basic_demo/gradle/wrapper/gradle-wrapper.jar')) {
-                        sh './CA2/Part1/gradle_basic_demo/gradlew wrapper'
-                    }
-                }
             }
         }
 
         stage('Assemble') {
             steps {
-                sh './CA2/Part1/gradle_basic_demo/gradlew assemble'
+                sh './CA2/Part1/gradle_basic_demo/gradle assemble'
             }
         }
 
         stage('Test') {
             steps {
-                sh './gradlew test'
+                sh './gradle test'
             }
             post {
                 always {
