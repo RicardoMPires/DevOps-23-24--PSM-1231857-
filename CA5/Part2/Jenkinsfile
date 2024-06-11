@@ -11,7 +11,7 @@ pipeline {
         stage('Assemble') {
             steps {
                dir ('CA2/Part2/react-and-spring-data-rest-basic'){
-                   sh './gradlew assemble'
+                   bat './gradlew assemble'
                }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Test') {
             steps {
              dir ('CA2/Part2/react-and-spring-data-rest-basic'){
-                sh './gradlew test'
+                bat './gradlew test'
             }
             }
             post {
@@ -32,7 +32,7 @@ pipeline {
         stage('Javadoc') {
             steps {
              dir ('CA2/Part2/react-and-spring-data-rest-basic'){
-                sh './gradlew javadoc'
+                bat './gradlew javadoc'
             }
             }
             post {
@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script {
                     dir('CA5/Part2') {
-                    sh 'cp ../../../CA2/Part2/gradle_basic_demo/build/libs/*.war .'
+                    bat 'cp ../../../CA2/Part2/gradle_basic_demo/build/libs/*.war .'
                         def app = docker.build("ricardompires/devops_23_24:${env.BUILD_NUMBER}")
                         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
                             app.push()
