@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script {
                     dir('CA5/Part2') {
-                    bat 'cp ../../../CA2/Part2/gradle_basic_demo/build/libs/*.war .'
+                    bat 'copy ..\\..\\..\\CA2\\Part2\\react-and-spring-data-rest-basic\\build\\libs\\*.war .'
                         def app = docker.build("ricardompires/devops_23_24:${env.BUILD_NUMBER}")
                         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
                             app.push()
