@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script {
                     dir('CA5/Part2') {
-                    sh 'cp ../../../CA2/Part2/gradle_basic_demo/build/libs/*.war .'
+                    sh 'cp ../../CA2/Part2/gradle_basic_demo/build/libs/*.war .'
                         def app = docker.build("ricardompires/devops_23_24:${env.BUILD_NUMBER}")
                         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
                             app.push()
